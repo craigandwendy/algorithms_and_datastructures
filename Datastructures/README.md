@@ -67,7 +67,11 @@ Here we cannot define an array of size greater 1. Our machine tries to find cons
 
 ## Linked List
 
+In the previous section we have seen, how pointers are defined and we already touched a little bit on the topic of arrays. Here, we are going to discuss, how pointer can be used to create dynamic arrays (arrays that can change their size).
+
 #### Struct
+
+
 
 #### Singly Linked List
 
