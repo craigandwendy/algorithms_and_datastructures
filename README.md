@@ -58,5 +58,8 @@ https://www.youtube.com/@tusharroy2525
 
 Of course there are many more useful websites and learning materials. The ones listed above are those that I used frequently for preparing this course. Keep in mind that not everything on the internet is correct. Only the definitions and solutions provided by the professer/university is valid.
 
+#
 
+### Course Review
 
+Datastructures and algorithms is known to be a hard course at any university, so do not expect it to come easy. I still think this is an excellent course, that everyone interested in programming or computer science generally should take. Yes it is a lot of work, but rewarding yourself with a good grade and the won knowledge is totally worth the time (blood and sweat) invested. I warmly recommend taking this course if you have the opportunity as it will make you a better programmer.
