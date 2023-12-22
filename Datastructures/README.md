@@ -94,16 +94,34 @@ struct Node {
   struct Node *next;  // this is how we can go to the next value
 }
 
+void insert_ele(struct Node** head_ref, int new_data) {
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* last = *head_ref; /* used in step 5*/
+
+    new_node->value = new_data;
+    new_node->next = NULL;
+
+    if (*head_ref == NULL) {
+        *head_ref = new_node;
+        return;
+    }
+
+    while (last->next != NULL) {
+      last = last->next;
+    }
+
+    last->next = new_node;
+    return;
+}
+
 void main() {
   int N = 5;  // our linked list has length 5
   int i;
 
   struct Node *head = Null;  // every linked list has a head, this is the entry point of our list
-  struct Node *temp = head;  // we create a temp variable that starts at head
-  
-  for (i=0;i<N;i++) {
-    temp->next->value = i;  // the value of temp->next equals to i
-    temp = temp->next;      // now we move temp to the next pointer, etc.
+
+  for (i=1;i<N;i++) {
+    insert_ele(&head, i);
   }
   
 }
@@ -138,12 +156,24 @@ struct Node {
   struct Node *next;  // this is how we can go to the next value
 }
 
-void create_linked_list(struct node* head, int N) {
-  struct Node *temp = head;  // we create a temp variable that starts at head
-  for (i=0;i<N;i++) {
-    temp->next->value = i;  // the value of temp->next equals to i
-    temp = temp->next;      // now we move temp to the next pointer, etc.
-  }
+void insert_ele(struct Node** head_ref, int new_data) {
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* last = *head_ref;  // used in step 5
+
+    new_node->value = new_data;
+    new_node->next = NULL;
+
+    if (*head_ref == NULL) {
+        *head_ref = new_node;
+        return;
+    }
+
+    while (last->next != NULL) {
+      last = last->next;
+    }
+
+    last->next = new_node;
+    return;
 }
 
 void main() {
@@ -152,7 +182,9 @@ void main() {
 
   struct Node *head = Null;  // every linked list has a head, this is the entry point of our list
 
-  create_linked_list(head, N);
+  for (i=1;i<N;i++) {
+    insert_ele(&head, i);
+  }
   
 }
 ```
@@ -161,7 +193,7 @@ Inside main() we defined a Node head. head is nothing else than a variable that 
 
 |  Variable  |  Address  |  Value  |  Next  |
 |  --------  |  -------  |  -----  |  ----  |
-|    head    |  0x00001  |    -    |        |
+|    head    |  0x00001  |   NULL  |        |
 |            |  0x00002  |Occupied |        |
 |            |  0x00003  |         |        |
 |            |  0x00004  |Occupied |        |
@@ -172,11 +204,11 @@ Inside main() we defined a Node head. head is nothing else than a variable that 
 |            |  0x00009  |         |        |
 |            |  0x00010  |         |        |
 
-This is how our memory looks like before calling create_linked_list(). When we call create_linked_list() the following is happening. At the beginning we defined a temporary pointer equal to head.
+This is how our memory looks like before calling create_linked_list(). When we call insert_ele() the following is happening. At the beginning we defined a temporary pointer called last, which first points to head. Then a node is created, with our value and pointer to the next element. First we check if head equals NULL. If True, we can directly insert our value at the beginning. head->next will be randomly decided, and is usually the first free next memory address, in this case 0x00003.
 
 |  Variable  |  Address  |  Value  |  Next  |
 |  --------  |  -------  |  -----  |  ----  |
-|    head    |  0x00001  |    -    |        |
+|    head    |  0x00001  |    0    |  NULL  |
 |            |  0x00002  |Occupied |        |
 |            |  0x00003  |         |        |
 |            |  0x00004  |Occupied |        |
@@ -185,25 +217,61 @@ This is how our memory looks like before calling create_linked_list(). When we c
 |            |  0x00007  |         |        |
 |            |  0x00008  |Occupied |        |
 |            |  0x00009  |         |        |
-|    temp    |  0x00010  | 0x00001 |        |
+|    last    |  0x00010  | 0x00001 |        |
 
-In the very first iteration, our machine is looking for free memory that can be populated with some value.
+In the second iteration, last will check if head is NULL, this is False, therefore we're entering the while loop and follow our chaing, until we reached the end.
 
 |  Variable  |  Address  |  Value  |  Next  |
 |  --------  |  -------  |  -----  |  ----  |
-|    head    |  0x00001  |    -    |        |
+|    head    |  0x00001  |    0    |0x00003 |
 |            |  0x00002  |Occupied |        |
-|            |  0x00003  |         |        |
+|            |  0x00003  |    1    |  NULL  |
 |            |  0x00004  |Occupied |        |
 |            |  0x00005  |         |        |
 |            |  0x00006  |Occupied |        |
 |            |  0x00007  |         |        |
 |            |  0x00008  |Occupied |        |
 |            |  0x00009  |         |        |
-|    temp    |  0x00010  | 0x00001 |        |
+|    last    |  0x00010  | 0x00003 |        |
 
+This is then repeated until we end our for loop
+
+
+|  Variable  |  Address  |  Value  |  Next  |
+|  --------  |  -------  |  -----  |  ----  |
+|    head    |  0x00001  |    0    |0x00003 |
+|            |  0x00002  |Occupied |        |
+|            |  0x00003  |    1    |0x00005 |
+|            |  0x00004  |Occupied |        |
+|            |  0x00005  |    2    |  NULL  |
+|            |  0x00006  |Occupied |        |
+|            |  0x00007  |         |        |
+|            |  0x00008  |Occupied |        |
+|            |  0x00009  |         |        |
+|    last    |  0x00010  | 0x00005 |        |
+
+At this stage we have finished our iteration and end our function. We have built our first linked list!
 
 #### Doubly Linked List
+
+As the name already suggests, a doubly linked list is a linked list, with two pointers, one is next and one is previous. The advantage of this is, that it is possible to start from the beginning or from the end. This allows us to search elements in O(0.5*N) which is O(N) at the end of the day. On the other side, a doubly linked list uses more memory as every node has a second pointer, more data = more memory used.
+
+Let's have a look of how our previous singly linked list looks like as a doubly linked list
+
+|  Variable  |  Address  |  Value  |  Next  |  Previous  |
+|  --------  |  -------  |  -----  |  ----  |  --------  |
+|    head    |  0x00001  |    0    |0x00003 |            |
+|            |  0x00002  |Occupied |        |            |
+|            |  0x00003  |    1    |0x00005 |  0x00001   |
+|            |  0x00004  |Occupied |        |            |
+|            |  0x00005  |    2    |  NULL  |  0x00003   |
+|            |  0x00006  |Occupied |        |            |
+|            |  0x00007  |         |        |            |
+|            |  0x00008  |Occupied |        |            |
+|            |  0x00009  |         |        |            |
+|    last    |  0x00010  | 0x00005 |        |            |
+
+Since the implementation of a doubly linked list is quite similar to the one of a singly linked list, we will leave it up to you, to have a detailed look.
 
 
 ## Stack
