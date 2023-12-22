@@ -1,7 +1,7 @@
 # Informatics II
 
 
-**The text shown below (until "Further useful links and learning materials") is accessible to the public and can be found via this link: https://www.ifi.uzh.ch/en/dbtg/teaching/courses/infoII.html**
+**This GitHub repository is based on the Informatics II course taught at University of Zurich (UZH). The content and/or implementations might contain mistakes, provided links might be expired and/or can contain mistakes as well. In exams: Only definitions and solutions provided by the professor/university are considered correct. Where possible or needed sources are provided. I do not take any responsibility for the correctness of any of the contents in this GitHub repository. The text shown below (until "Further useful links and learning materials") is accessible to the public and can be found via this link: https://www.ifi.uzh.ch/en/dbtg/teaching/courses/infoII.html**
 
 Lecturer: Prof. Dr. Michael Böhlen
 
