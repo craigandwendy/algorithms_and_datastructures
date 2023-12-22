@@ -124,9 +124,84 @@ The reader might ask, what are we actually doing here. No worries, we will look 
 |            |  0x00009  |    3    |0x00010 |
 |            |  0x00010  |    4    |  Null  |
 
-By using structs we can create our own data structure. In the code we call it Node. Every Node that we insert in our linked list, has a value and a pointer pointing to the next value (=it contains the address where the next value is saved). Once the process is finished it is not possible to access a value in O(1), we cannot do something like this arr[3], but we have to iterate through our linked list, starting at the head
+By using structs we can create our own data structure. In the code we call it Node. Every Node that we insert in our linked list, has a value and a pointer pointing to the next value (=it contains the address where the next value is saved). Once the process is finished it is not possible to access a value in O(1), we cannot do something like this arr[3], but we have to iterate through our linked list, starting at the head, this is one tradeoff between arrays and linked lists.
+
+What is important: we have seen that using structs we can create our own datastructure, this enables us to create a chain of pointers, where we can store at every address along the chain additional values.
 
 #### Singly Linked List
+
+In the previous section we have seen what structs are, and how we can use them. In this section, we will restruture the code from above and show how the linked list is actually created.
+
+```
+struct Node {
+  int value;  // along our linked list we want to save integers
+  struct Node *next;  // this is how we can go to the next value
+}
+
+void create_linked_list(struct node* head, int N) {
+  struct Node *temp = head;  // we create a temp variable that starts at head
+  for (i=0;i<N;i++) {
+    temp->next->value = i;  // the value of temp->next equals to i
+    temp = temp->next;      // now we move temp to the next pointer, etc.
+  }
+}
+
+void main() {
+  int N = 3;  // our linked list has length 3
+  int i;
+
+  struct Node *head = Null;  // every linked list has a head, this is the entry point of our list
+
+  create_linked_list(head, N);
+  
+}
+```
+
+Inside main() we defined a Node head. head is nothing else than a variable that will work as our entry point for our linked list. We don't really care about the address of the other nodes, as we simply do not need them, to get access to our linked list, but it is important to have an entry point, the entry point must never change, else we might not be able to reach our linked list.
+
+|  Variable  |  Address  |  Value  |  Next  |
+|  --------  |  -------  |  -----  |  ----  |
+|    head    |  0x00001  |    -    |        |
+|            |  0x00002  |Occupied |        |
+|            |  0x00003  |         |        |
+|            |  0x00004  |Occupied |        |
+|            |  0x00005  |         |        |
+|            |  0x00006  |Occupied |        |
+|            |  0x00007  |         |        |
+|            |  0x00008  |Occupied |        |
+|            |  0x00009  |         |        |
+|            |  0x00010  |         |        |
+
+This is how our memory looks like before calling create_linked_list(). When we call create_linked_list() the following is happening. At the beginning we defined a temporary pointer equal to head.
+
+|  Variable  |  Address  |  Value  |  Next  |
+|  --------  |  -------  |  -----  |  ----  |
+|    head    |  0x00001  |    -    |        |
+|            |  0x00002  |Occupied |        |
+|            |  0x00003  |         |        |
+|            |  0x00004  |Occupied |        |
+|            |  0x00005  |         |        |
+|            |  0x00006  |Occupied |        |
+|            |  0x00007  |         |        |
+|            |  0x00008  |Occupied |        |
+|            |  0x00009  |         |        |
+|    temp    |  0x00010  | 0x00001 |        |
+
+In the very first iteration, our machine is looking for free memory that can be populated with some value.
+
+|  Variable  |  Address  |  Value  |  Next  |
+|  --------  |  -------  |  -----  |  ----  |
+|    head    |  0x00001  |    -    |        |
+|            |  0x00002  |Occupied |        |
+|            |  0x00003  |         |        |
+|            |  0x00004  |Occupied |        |
+|            |  0x00005  |         |        |
+|            |  0x00006  |Occupied |        |
+|            |  0x00007  |         |        |
+|            |  0x00008  |Occupied |        |
+|            |  0x00009  |         |        |
+|    temp    |  0x00010  | 0x00001 |        |
+
 
 #### Doubly Linked List
 
