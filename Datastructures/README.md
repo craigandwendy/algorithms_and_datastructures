@@ -71,7 +71,60 @@ In the previous section we have seen, how pointers are defined and we already to
 
 #### Struct
 
+Before actually introducing the concept of a struct (also known as structure), we will first have a look at our memory from the previous section.
 
+|  Variable  |  Address  |  Value  |
+|  --------  |  -------  |  -----  |
+|     A      |  0x00001  | 0x00003 |
+|     B      |  0x00002  |Occupied |
+|     C      |  0x00003  | 0x00004 |
+|     D      |  0x00004  |Occupied |
+|     E      |  0x00005  | 0x00005 |
+|     F      |  0x00006  |Occupied |
+|     G      |  0x00007  | 0x00009 |
+|     H      |  0x00008  |Occupied |
+|     I      |  0x00009  | 0x00010 |
+|     J      |  0x00010  |    5    |
+
+The question came up: How can we store along our chain of pointers additional values, such that we create a kind of dynamic array. Well the answer in quite easy, why don't we define our own datastructure? This is the central concept of structs. Let's have a look at the code and how one can imagine this inside our memory. From now own we will not use the term chain of pointers but stick to linked list.
+
+```
+struct Node {
+  int value;  // along our linked list we want to save integers
+  struct Node *next;  // this is how we can go to the next value
+}
+
+void main() {
+  int N = 5;  // our linked list has length 5
+  int i;
+
+  struct Node *head = Null;  // every linked list has a head, this is the entry point of our list
+  struct Node *temp = head;  // we create a temp variable that starts at head
+  
+  for (i=0;i<N;i++) {
+    temp->next->value = i;  // the value of temp->next equals to i
+    temp = temp->next;      // now we move temp to the next pointer, etc.
+  }
+  
+}
+```
+
+The reader might ask, what are we actually doing here. No worries, we will look at it more in detail in the next section. It is important to get the concept of structs.
+
+|  Variable  |  Address  |  Value  |  Next  |
+|  --------  |  -------  |  -----  |  ----  |
+|    head    |  0x00001  |    -    |0x00003 |
+|            |  0x00002  |Occupied |
+|            |  0x00003  |    0    |0x00004 |
+|            |  0x00004  |Occupied |
+|            |  0x00005  |    1    |0x00005 |
+|            |  0x00006  |Occupied |
+|            |  0x00007  |    2    |0x00009 |
+|            |  0x00008  |Occupied |
+|            |  0x00009  |    3    |0x00010 |
+|            |  0x00010  |    4    |  Null  |
+
+By using structs we can create our own data structure. In the code we call it Node. Every Node that we insert in our linked list, has a value and a pointer pointing to the next value (=it contains the address where the next value is saved). Once the process is finished it is not possible to access a value in O(1), we cannot do something like this arr[3], but we have to iterate through our linked list, starting at the head
 
 #### Singly Linked List
 
