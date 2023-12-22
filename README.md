@@ -44,9 +44,7 @@ Labs that are cancelled due to public holidays, are scheduled for different date
 
 Office hours: They are settled via prior email arrangement with the assistant of the course. Before you proceed in such an arrangement, if additional support is needed, you can try the following, in the given order: (a) post your questions in the forum, (b) contact your tutor (c) contact the teaching assistant of the course.
 
-#
-
-### Further useful links and learning materials
+## Further useful links and learning materials
 
 Abdul Bari's course helps students (including me) to get a deep understanding about datastructures and algorithms. He is active on multiple channels such as YouTube and Udemy.
 
@@ -58,8 +56,14 @@ https://www.youtube.com/@tusharroy2525
 
 Of course there are many more useful websites and learning materials. The ones listed above are those that I used frequently for preparing this course. Keep in mind that not everything on the internet is correct. Only the definitions and solutions provided by the professer/university is valid.
 
-#
+## Structure
 
-### Course Review
+This GitHub consists of two important folders: Algorithms and Datastrucures.
+* The Folder Datastructures gives an overview and implentation for some datastructures. Inside the overview the general functionality will be briefly explained.
+* The Folder Algorithms contains differnt algorithms e.g., dynamic programming problems, graph operations, etc. Where needed additional explanation will be provided e.g., YouTube, websites, own explanations, etc.
+
+Feel free discovering the contents provided and downloading them!
+
+## Course Review
 
 Datastructures and algorithms is known to be a hard course at any university, so do not expect it to come easy. I still think this is an excellent course, that everyone interested in programming or computer science generally should take. Yes it is a lot of work, but rewarding yourself with a good grade and the won knowledge is totally worth the time (blood and sweat) invested. I warmly recommend taking this course if you have the opportunity as it will make you a better programmer.
