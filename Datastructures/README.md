@@ -380,6 +380,57 @@ Stacks use a LIFO principle. Last in first out, our last element pushed on the l
 
 ## Queue
 
+You have probably had many situations where you came across a queue e.g., waiting in a grocery store, creating a music playlist, even a traffic jam is a queue. So what do all of these examples have in common? Well the principle is called FIFO, written out: first in first out. In other words we insert an element at the tail of a linked list, this operation is call enqueue. When we dequeue an element from our linked list we remove the element at the head.
+
+Let's see an example, first we will intiliaze a queue, then enqueue some element and dequeue some elements.
+
+```
+head
+| Val  |  Next  |   |
+| Null |  Null  |-->|
+|______|________|   |
+tail
+
+enqueue(1)
+
+head
+| Val  |  Next  |   | Val  |  Next  |   |
+| Null |  Null  |-->|  1   |  Null  |-->|
+|______|________|   |______|________|   |
+                     tail
+
+enqueue(2)
+
+head
+| Val  |  Next  |   | Val  |  Next  |   | Val  |  Next  |   |
+| Null |  Null  |-->|  1   |  Null  |-->|  2   |  Null  |-->|
+|______|________|   |______|________|   |______|________|   |
+                                         tail
+
+enqueue(3)
+
+head
+| Val  |  Next  |   | Val  |  Next  |   | Val  |  Next  |   | Val  |  Next  |   |
+| Null |  Null  |-->|  1   |  Null  |-->|  2   |  Null  |-->|  3   |  Null  |-->|
+|______|________|   |______|________|   |______|________|   |______|________|   |
+                                                             tail
+
+dequeue()
+
+head
+| Val  |  Next  |   | Val  |  Next  |   | Val  |  Next  |   |
+| Null |  Null  |-->|  2   |  Null  |-->|  3   |  Null  |-->|
+|______|________|   |______|________|   |______|________|   |
+                                         tail
+
+enqueue(1)
+
+head
+| Val  |  Next  |   | Val  |  Next  |   | Val  |  Next  |   | Val  |  Next  |   |
+| Null |  Null  |-->|  2   |  Null  |-->|  3   |  Null  |-->|  1   |  Null  |-->|
+|______|________|   |______|________|   |______|________|   |______|________|   |
+                                                             tail
+```
 
 ## Trees
 
