@@ -436,7 +436,30 @@ Know you have seen how a queue works, for the implementation I ask you to have a
 
 ## Trees
 
+Up until now, we have seen the most basic datastructures. Now we are going to expand our knowledge and skills to build more complex datastructures, that have many advantages and which allow to optimize time and space complexity.
+
 #### Binary-Tree
+
+Let's define a tree generally:
+* Every tree must have a root
+* Every root can have at least null branches (the tree trunk is also considered to be a branch)
+
+Now that we have defined a tree generally, let's have a look on binary trees. As the name suggest binary trees, are trees whose root has exactly two branches.
+
+```
+This is a basic tree
+   Root
+   /  \
+left  right
+
+A Node looks like this, every Node is also a root
+
+|-------------------------|
+|   l   |   val   |   r   |
+
+
+```
+
 
 #### D-Ary-Tree
 
