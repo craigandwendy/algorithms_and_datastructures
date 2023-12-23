@@ -70,7 +70,9 @@ Our chain of pointers look like this:
 |-------|   |-------|   |-------|   |-------|   |-------|   |-------|
 ```
 
-Here we cannot define an array of size greater 1. Our machine tries to find consecutive free memory, which does not exist, but the pointer will not face these problems. As a reader you might ask yourself: ,,Ok, we created a kind of chain, but our chain only contains one single value!''. Yes, this is totally correct. In the next chapter, we will introduce ("a tool") how we can have such a chain, where we can store at any address additional values.
+Using our known variables A to J we can access every element in O(1). But we need to store N variables, which is hard when we don't know how bi N will be.
+
+In the table showing our memory we cannot define an array of size greater 1. Our machine tries to find consecutive free memory, which does not exist, but the pointer will not face these problems. As a reader you might ask yourself: ,,Ok, we created a kind of chain, but our chain only contains one single value!''. Yes, this is totally correct. In the next chapter, we will introduce ("a tool") how we can have such a chain, where we can store at any address additional values.
 
 
 ## Linked List
@@ -94,7 +96,7 @@ Before actually introducing the concept of a struct (also known as structure), w
 |     I      |  0x00009  | 0x00010 |
 |     J      |  0x00010  |    5    |
 
-The question came up: How can we store along our chain of pointers additional values, such that we create a kind of dynamic array. Well the answer in quite easy, why don't we define our own datastructure? This is the central concept of structs. Let's have a look at the code and how one can imagine this inside our memory. From now own we will not use the term chain of pointers but stick to linked list.
+The question came up: How can we store along our chain of pointers additional values, such that we create a kind of dynamic array. Well the answer is quite easy, why don't we define our own datastructure? This is the central concept of structs. Let's have a look at the code and how one can imagine this inside our memory. From now own we will not use the term chain of pointers but stick to linked list.
 
 ```
 struct Node {
@@ -141,9 +143,9 @@ The reader might ask, what are we actually doing here. No worries, we will look 
 |  --------  |  -------  |  -----  |  ----  |
 |    head    |  0x00001  |    -    |0x00003 |
 |            |  0x00002  |Occupied |
-|            |  0x00003  |    0    |0x00004 |
+|            |  0x00003  |    0    |0x00005 |
 |            |  0x00004  |Occupied |
-|            |  0x00005  |    1    |0x00005 |
+|            |  0x00005  |    1    |0x00007 |
 |            |  0x00006  |Occupied |
 |            |  0x00007  |    2    |0x00009 |
 |            |  0x00008  |Occupied |
@@ -151,6 +153,17 @@ The reader might ask, what are we actually doing here. No worries, we will look 
 |            |  0x00010  |    4    |  Null  |
 
 By using structs we can create our own data structure. In the code we call it Node. Every Node that we insert in our linked list, has a value and a pointer pointing to the next value (=it contains the address where the next value is saved). Once the process is finished it is not possible to access a value in O(1), we cannot do something like this arr[3], but we have to iterate through our linked list, starting at the head, this is one tradeoff between arrays and linked lists.
+
+This is how we can also illustrate our linked list, with our own defined datastructure struct Node:
+
+```
+|--Val--|--Next--|   |--Val--|--Next--|   |--Val--|--Next--|   |--Val--|--Next--|   |--Val--|--Next--|   |--Val--|--Next--|
+|   -   |0x00003 |-->|   0   |0x00005 |-->|   1   |0x00007 |-->|   2   |0x00009 |-->|   3   |0x00010 |-->|   4   |  NULL  |
+|-------|--------|   |-------|--------|   |-------|--------|   |-------|--------|   |-------|--------|   |-------|--------|
+```
+
+The last element of a linked list always points to Null meaning it does not point anywhere.
+
 
 What is important: we have seen that using structs we can create our own datastructure, this enables us to create a chain of pointers, where we can store at every address along the chain additional values.
 
