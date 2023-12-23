@@ -162,7 +162,7 @@ This is how we can also illustrate our linked list, with our own defined datastr
 |-------|--------|   |-------|--------|   |-------|--------|   |-------|--------|   |-------|--------|   |-------|--------|
 ```
 
-The last element of a linked list always points to Null meaning it does not point anywhere.
+The last element of a linked list always points to Null meaning it does not point anywhere. Since the memory allocation is random, we can never predict the address of our next Node, also since the address of every Node, excluding the head, is only temporary stored, we cannot access any element in O(1) like in arrays. We have to iterate through our linked list to access all elements. The iteration starts from the head and then follows goes to the address stored in next.
 
 
 What is important: we have seen that using structs we can create our own datastructure, this enables us to create a chain of pointers, where we can store at every address along the chain additional values.
@@ -320,6 +320,62 @@ struct Node {
 
 
 ## Stack
+
+If you have heard about recursion you must have already enountered or heared about stacks. How can we imagine a stack in real life? You have a collection of CDs one of top of each other. Now you want to play one CD that is in the middle of the stack. To access it you have to remove every CD one by one until you find the CD you have looked for. This operation is called pop. The opposite operation, stacking CDs one by one, is called push. These are the two basic operations that can be performed on a stack. Let's go to a more abstract level now. A stack is a singly linked list, where elements are always inserted at the beginning and removed at the beginning, instead of updating the end, we update head everytime one of the two operators is done.
+
+Now we will have a look at an example:
+
+```
+This is an initialized stack, without any elements
+
+|_____|<--head
+```
+
+Let's push 3
+
+```
+|  3  |<--head
+|_____|
+```
+
+push(2) then push(1)
+
+```
+|  1  |<--head
+|  2  |
+|  3  |
+|_____|
+```
+
+We can also create a second stack, we will pop our first stack and than take the popped element and push it on the second stack.
+
+```
+|  1  |<--head   |_____|<--head
+|  2  |
+|  3  |
+|_____|
+```
+
+pop() does not need any arguments, because we always remove the element at the head.
+
+```
+|  2  |<--head   |  1  |<--head
+|  3  |          |_____|
+|_____|
+```
+
+Let's pop the remaining element resulting into this:
+
+
+```
+|_____|<--head   |  3  |<--head
+                 |  2  |
+                 |  1  |
+                 |_____|
+```
+
+Stacks use a LIFO principle. Last in first out, our last element pushed on the left stack is the first one that was popped.
+
 
 
 ## Queue
