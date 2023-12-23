@@ -499,12 +499,12 @@ https://www.geeksforgeeks.org/types-of-binary-tree/
 
 ## Hash Tables
 
-A hash table is an array, where every element of the array is a linked list. Similar to a matrix with N rows but and every row has between 0 and M columns.
+A hash table is an array, where every element of the array is a linked list. Similar to a matrix with N rows but and every row has between 0 and M columns. Every hash table has a hash function, which can be defined by the user. The idea of a hash function is to distribute all elements uniformly, such that we can reduce the look up time to O(N/k) where k is the number of slots and N is the number of all elements, respectively O(1). You can kind of imagine a hash table as an excel spreadsheet.
 
-```
+#### Open Addressing
 
-```
+Collisions in hash tables happen quite often. A collision is: when A is already at HT[2] and B was also assigned to HT[2]. But since HT[2] is already occupied, it has to move to another slot. Open Addressing solves this problem by simply assigning B to another slot. The advantage of this distribution process is, that every slot will take at most 1 element, in best case we can look up the value in O(1) in worst case O(n). Depending on the hash function we use we can reduce the average runtime.
 
 #### Chaining
 
-#### Open Addressing
+Unlike open addressing chaining does not care about collisions. In fact when there is a collision, chaining just takes the element and inserts it at the head of the linked list. Example: A is at HT[2], B get assigned to HT[2] -> collision. Insert B at the head of HT[2]. The linked list is a slightly modified stack. The advantage of chaining is, that we can always find the slot in O(1) where the value was stored. The disadvantage is, that we have to iterate through the linked list to find the element. So the worst case is O(n), assuming the elements are uniformly distributed we can reduce it to O(N/k), where k is the number of slots, if we choose k big enough, we can even bring it down to O(1) in theory, practically this will take up too much memory.
