@@ -53,14 +53,22 @@ Starting at A, following this long chain will end at J and return the value 5. S
 |  --------  |  -------  |  -----  |
 |     A      |  0x00001  | 0x00003 |
 |     B      |  0x00002  |Occupied |
-|     C      |  0x00003  | 0x00004 |
+|     C      |  0x00003  | 0x00005 |
 |     D      |  0x00004  |Occupied |
-|     E      |  0x00005  | 0x00005 |
+|     E      |  0x00005  | 0x00007 |
 |     F      |  0x00006  |Occupied |
 |     G      |  0x00007  | 0x00009 |
 |     H      |  0x00008  |Occupied |
 |     I      |  0x00009  | 0x00010 |
 |     J      |  0x00010  |    5    |
+
+Our chain of pointers look like this:
+
+```
+|-------|   |-------|   |-------|   |-------|   |-------|   |-------|
+|0x00003|-->|0x00005|-->|0x00007|-->|0x00009|-->|0x00010|-->|   5   |
+|-------|   |-------|   |-------|   |-------|   |-------|   |-------|
+```
 
 Here we cannot define an array of size greater 1. Our machine tries to find consecutive free memory, which does not exist, but the pointer will not face these problems. As a reader you might ask yourself: ,,Ok, we created a kind of chain, but our chain only contains one single value!''. Yes, this is totally correct. In the next chapter, we will introduce ("a tool") how we can have such a chain, where we can store at any address additional values.
 
@@ -271,7 +279,31 @@ Let's have a look of how our previous singly linked list looks like as a doubly 
 |            |  0x00009  |         |        |            |
 |    last    |  0x00010  | 0x00005 |        |            |
 
-Since the implementation of a doubly linked list is quite similar to the one of a singly linked list, we will leave it up to you, to have a detailed look.
+The idea of a doubly linked list or even a n-linked list is used in many other datastructures e.g., a binary tree is a doubly linked list, then there are trees with 3 outgoing pointers (red-black trees), etc. You can lookup the implementation of doubly linked lists for example in binary_search_tree.c. But let's still have a look at the struct used.
+
+```
+// struct for doubly linked lists
+struct Node {
+  int value;
+  struct Node* next;
+  struct Node* previous;
+}
+
+// struct for "normal" trees
+struct Node {
+  int value;
+  struct Node* left;   // left is the next left pointer
+  struct Node* right;  // right is the next right pointer
+}
+
+// struct for red black trees
+struct Node {
+  int value;
+  struct Node* parent;  // pointer to previous
+  struct Node* left;
+  struct Node* right;
+}
+```
 
 
 ## Stack
