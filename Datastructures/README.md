@@ -432,6 +432,8 @@ head
                                                              tail
 ```
 
+Know you have seen how a queue works, for the implementation I ask you to have a look in queue.c. In the example we just made, we have two pointers: a head and a tail. While the head never changes the tail always gets updated and points on the last element. What is the advantage of having a tail pointer? In the section singly linked list, we learned that it is not possible to access any value in O(1) in a linked list, this means we always have to start at the head and iterate until we arrive at the tail. This takes O(N) time, which generally can be considered ok, but if we have a pointer always pointing at the last element, we can insert elements in O(1) time, which is a lot better than O(N). Of course the tail pointer takes up some extra memory, but this little amount of memory compared to O(N) vs O(1) is completely worth the tradeoff.
+
 ## Trees
 
 #### Binary-Tree
