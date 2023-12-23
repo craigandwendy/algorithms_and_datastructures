@@ -499,6 +499,12 @@ https://www.geeksforgeeks.org/types-of-binary-tree/
 
 ## Hash Tables
 
+A hash table is an array, where every element of the array is a linked list. Similar to a matrix with N rows but and every row has between 0 and M columns.
+
+```
+
+```
+
 #### Chaining
 
 #### Open Addressing
