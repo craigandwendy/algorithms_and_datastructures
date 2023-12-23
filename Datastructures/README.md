@@ -440,33 +440,62 @@ Up until now, we have seen the most basic datastructures. Now we are going to ex
 
 #### Binary-Tree
 
-Let's define a tree generally:
+Let's define a (d-ary) tree generally:
 * Every tree must have a root
-* Every root can have at least null branches (the tree trunk is also considered to be a branch)
+* Every root must have at least null branches (the tree trunk is also considered to be a branch)
+
+Definition binary tree:
+* It must have a root
+* It can have 0, 1 or 2 children
 
 Now that we have defined a tree generally, let's have a look on binary trees. As the name suggest binary trees, are trees whose root has exactly two branches.
 
 ```
-This is a basic tree
+This is a basic tree (actually the most basic form of a tree is just the root)
    Root
    /  \
 left  right
 
-A Node looks like this, every Node is also a root
+A Node looks like this, every Node is also a root (think of it as a recursive concept)
 
 |-------------------------|
 |   l   |   val   |   r   |
+| 0x004 |    3    | 0x009 |
+|-------------------------|
 
+A binary tree is a slightly modified linked list, instead of pointing to previous and next, it points to two next elements, which are called left and right.
+
+We can also make a bigger binary tree
+
+         Root
+         /   \
+        l     r
+       / \   / \
+      l   r  l  r
 
 ```
 
+At this point we must introduce the binary search tree. It is a binary tree with some additional contstraints
 
-#### D-Ary-Tree
+Definition binary search tree:
+* It must have a root
+* It can have 0, 1 or 2 children
+* root->left->value < root->value
+* root->right->value > root->value
+
+The binary search tree allows to search elements in a linked list in log(n) time respectively in O(n), on average still better than a linked list with O(n). Also a binary search tree is considered sorted, so sorting is O(1), we can apply some tree traversal algorithms and print out an array resp. a list in O(n). Insertion takes between log(n) and O(n), depending how balanced the tree is.
+
 
 #### Red-Black-Tree
 
+A red-black-tree is a binary search tree with some more constraints. It uses colors to color each node this ensures that the tree always stays balanced such that searching and inserting take O(log(n)).
+
+
 #### Further Variants
 
+There are other balanced binary trees. You can look them up on the internet:
+
+https://www.geeksforgeeks.org/types-of-binary-tree/
 
 ## Hash Tables
 
